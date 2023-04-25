@@ -12,6 +12,9 @@ This is a backport of the <a href="https://github.com/RealityMachina/Scaling-Can
 - Any fixes related to item interactions
 - A way to disable the mod for a save file and safely uninstall
 
+## Call of the Wild Compatibility
+Given how popular the mod is (I use it anyway) I've made sure this mod will work with the classes added by that mod. However if you do not use CallOfTheWild no problem, the mod is not dependant at all on it.
+
 ## How to Install
 - Download and install <a href="https://github.com/newman55/unity-mod-manager">Unity Mod Manager</a> with at least version 0.25.4.0
 - Setup UMM to find your Pathfinder Kingmaker install
