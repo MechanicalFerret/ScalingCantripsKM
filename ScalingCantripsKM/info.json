@@ -1,0 +1,9 @@
+{
+    "Id": "ScalingCantripsKM",
+    "DisplayName": "Scaling Cantrips: Kingmaker",
+    "Author": "MechanicalFerret",
+    "Version": "1.0.0",
+    "ManagerVersion": "0.25.4.0",
+    "AssemblyName": "ScalingCantripsKM.dll",
+    "EntryMethod": "ScalingCantripsKM.Main.Load"
+}
