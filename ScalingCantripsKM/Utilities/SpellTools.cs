@@ -23,9 +23,16 @@ namespace ScalingCantripsKM.Utilities
             BlueprintSpellList List = spellList.GetSpellList();
             BlueprintFeature Cantrips = spellList.GetCantripFeature();
             BlueprintFeatureReplaceSpellbook ReplacementSpellBook = spellList.GetReplacedSpellBook();
-            AddToListIfMissing();
-            AddToCantripsIfMissing();
-            AddToReplacementSpellBookIfMissing();
+            if (spellList.isSpecialistSchool())
+            {
+                List.SpellsByLevel[level].Spells.Add(spell);
+            } 
+            else
+            {
+                AddToListIfMissing();
+                AddToCantripsIfMissing();
+                AddToReplacementSpellBookIfMissing();
+            }
 
             // Iterate through all archetypes, there are conditionals on the spell list that will prevent them from being
             // added where they don't belong but ultimately we assume if a class is being added to we want to handle the archetypes.
@@ -118,9 +125,10 @@ namespace ScalingCantripsKM.Utilities
             private SpellSchool[] onlySchools;
             private SpellSchool[] opposedSchools;
             private Dictionary<string, SpellList> archetypes;
+            private bool isSpecialist;
             private bool isCallOfTheWild;
 
-            public SpellList(string Name, string Spellbook = null, string Cantrips = null, string ReplacementSpellbook = null, bool isCallOfTheWild = false, SpellSchool[] OnlySchools = null, SpellSchool[] OpposedSchools = null)
+            public SpellList(string Name, string Spellbook = null, string Cantrips = null, string ReplacementSpellbook = null, bool isSpecialistSchool = false, bool isCallOfTheWild = false, SpellSchool[] OnlySchools = null, SpellSchool[] OpposedSchools = null)
             {
                 this.name = Name;
                 this.spellListAssetId = Spellbook;
@@ -129,6 +137,7 @@ namespace ScalingCantripsKM.Utilities
                 this.onlySchools = OnlySchools;
                 this.opposedSchools = OpposedSchools;
                 this.archetypes = new Dictionary<string, SpellList>();
+                this.isSpecialist = isSpecialistSchool;
                 this.isCallOfTheWild = isCallOfTheWild;
             }
 
@@ -180,6 +189,11 @@ namespace ScalingCantripsKM.Utilities
                 if (onlySchools != null && !onlySchools.Contains(spell.School)) return false;
                 if (opposedSchools != null && opposedSchools.Contains(spell.School)) { return false; }
                 return true;
+            }
+
+            public bool isSpecialistSchool()
+            {
+                return isSpecialist;
             }
         }
     }
