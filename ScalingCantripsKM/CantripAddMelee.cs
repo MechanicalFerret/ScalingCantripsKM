@@ -1,9 +1,7 @@
 ﻿using Harmony12;
 using Kingmaker.Blueprints;
-using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.Blueprints.Items.Weapons;
-using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
 using Kingmaker.RuleSystem.Rules.Damage;
@@ -11,17 +9,11 @@ using Kingmaker.UnitLogic.Abilities;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Abilities.Components;
 using Kingmaker.UnitLogic.Abilities.Components.Base;
-using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Actions;
 using Kingmaker.UnitLogic.Mechanics.Components;
 using ScalingCantripsKM.Config;
 using ScalingCantripsKM.Utilities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ScalingCantripsKM
 {
@@ -150,7 +142,8 @@ namespace ScalingCantripsKM
                 bp.MaterialComponent = new BlueprintAbility.MaterialComponentData();
                 bp.MaterialComponent.Count = 1;
                 bp.ResourceAssetIds.Add("3ab291fca61cf3b4da311da82340ee9e");
-                bp.AddComponent(Helpers.Create<SpellComponent>(c => {
+                bp.AddComponent(Helpers.Create<SpellComponent>(c =>
+                {
 
                     c.School = SpellSchool.Evocation;
                 }));
@@ -159,7 +152,8 @@ namespace ScalingCantripsKM
                     c.Descriptor = SpellDescriptor.Electricity;
                 }));
                 bp.AddComponent(Helpers.Create<CantripComponent>());
-                bp.AddComponent(Helpers.Create<AbilityEffectStickyTouch>(c => {
+                bp.AddComponent(Helpers.Create<AbilityEffectStickyTouch>(c =>
+                {
                     c.TouchDeliveryAbility = JoltingGraspEffect;
                 }));
             });

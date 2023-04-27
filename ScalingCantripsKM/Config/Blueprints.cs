@@ -1,13 +1,11 @@
 ﻿using JetBrains.Annotations;
 using Kingmaker.Blueprints;
-using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.Utility;
 using Newtonsoft.Json;
 using ScalingCantripsKM.Utilities;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using UnityModManagerNet;
 
 namespace ScalingCantripsKM.Config
 {
@@ -69,7 +67,7 @@ namespace ScalingCantripsKM.Config
         {
             if (!ModBlueprintNameToGUID.TryGetValue(name, out var id))
             {
-                #if DEBUG
+#if DEBUG
                 if (!NewBlueprintNameToGUID.TryGetValue(name, out var newId))
                 {
                     id = Guid.NewGuid().ToString();
@@ -80,7 +78,7 @@ namespace ScalingCantripsKM.Config
                 {
                     id = newId;
                 }
-                #endif
+#endif
             }
             if (id == null)
             {

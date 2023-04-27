@@ -20,7 +20,8 @@ namespace ScalingCantripsKM
 
         static bool Load(UnityModManager.ModEntry modEntry)
         {
-            try {
+            try
+            {
                 // Setup Main Variables
                 Main.modEntry = modEntry;
                 Main.logger = modEntry.Logger;
@@ -54,6 +55,7 @@ namespace ScalingCantripsKM
         private static void OnSaveGUI(UnityModManager.ModEntry modEntry)
         {
             Main.settings.Save(modEntry);
+            LibraryScriptableObject_LoadDictionary_Patch.hasRun = false;
         }
 
         private static void OnGUI(UnityModManager.ModEntry modEntry)
@@ -82,7 +84,7 @@ namespace ScalingCantripsKM
         [HarmonyAfter("CallOfTheWild")]
         static class LibraryScriptableObject_LoadDictionary_Patch
         {
-            static bool hasRun = false;
+            public static bool hasRun = false;
 
             static void Postfix(LibraryScriptableObject __instance)
             {
@@ -95,15 +97,16 @@ namespace ScalingCantripsKM
                     CantripPatcher.Init();
                     CantripAddRanged.Init();
                     CantripAddMelee.Init();
+                    CantripFeatures.Init();
                     Blueprints.WriteBlueprints();
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     logger.LogException("Error Setting up ScalingCantripsKM", e);
                     Main.modEntry.Enabled = false;
                     throw e;
                 }
-                
+
             }
         }
     }

@@ -4,7 +4,6 @@ using Kingmaker.EntitySystem.Stats;
 using Kingmaker.Enums;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Abilities.Components;
-using Kingmaker.UnitLogic.Buffs;
 using Kingmaker.UnitLogic.Buffs.Blueprints;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Actions;
@@ -66,8 +65,8 @@ namespace ScalingCantripsKM
 
             // Unfortuantely mods that change the damage type of cantrips (like CallOfTheWild) will have their damage dice show up incorrectly
             // in the description. Not sure if this should be accounted for but its a known issue.
-            var description = cantrip.Description.Replace($"d{(int)oldDiceType}", $"d{(int) diceType}");
-            var newString = $"{description} Damage dice is increased by 1 every {Settings.CasterLevelsReq} caster level(s), up to a maximum of {Settings.MaxDice}d{(int) diceType}.";
+            var description = cantrip.Description.Replace($"d{(int)oldDiceType}", $"d{(int)diceType}");
+            var newString = $"{description} Damage dice is increased by 1 every {Settings.CasterLevelsReq} caster level(s), up to a maximum of {Settings.MaxDice}d{(int)diceType}.";
             cantrip.SetDescription(newString);
         }
 

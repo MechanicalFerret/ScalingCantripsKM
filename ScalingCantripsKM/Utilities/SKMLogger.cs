@@ -1,10 +1,6 @@
 ﻿using JetBrains.Annotations;
 using Kingmaker.Blueprints;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityModManagerNet;
 
 namespace ScalingCantripsKM.Utilities
@@ -16,6 +12,12 @@ namespace ScalingCantripsKM.Utilities
         public static void Log(string msg)
         {
             logger.Log(msg);
+        }
+
+        public static void Setting(bool setting, string ConfiguredOn, string ConfiguredOff)
+        {
+            var msg = (setting) ? ConfiguredOn : ConfiguredOff;
+            Log(msg);
         }
 
         [System.Diagnostics.Conditional("DEBUG")]

@@ -1,11 +1,6 @@
 ﻿using Kingmaker.EntitySystem.Entities;
-using Kingmaker.UnitLogic.Mechanics.Properties;
 using Kingmaker.UnitLogic;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Kingmaker.UnitLogic.Mechanics.Properties;
 
 namespace ScalingCantripsKM.DataEntries
 {

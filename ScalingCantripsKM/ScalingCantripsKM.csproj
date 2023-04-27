@@ -83,8 +83,10 @@
   <ItemGroup>
     <Compile Include="CantripAddMelee.cs" />
     <Compile Include="CantripAddRanged.cs" />
+    <Compile Include="CantripFeatures.cs" />
     <Compile Include="CantripPatcher.cs" />
     <Compile Include="Config\Blueprints.cs" />
+    <Compile Include="DataEntries\AddCasterStatToDamage.cs" />
     <Compile Include="DataEntries\HighestCasterLevel.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

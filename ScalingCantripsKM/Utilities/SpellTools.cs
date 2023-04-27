@@ -1,16 +1,13 @@
-﻿using Kingmaker.Blueprints.Classes.Spells;
-using Kingmaker.UnitLogic.Abilities.Blueprints;
-using System.Linq;
-using ScalingCantripsKM.Config;
-using System;
-using Kingmaker.Blueprints;
+﻿using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
-using System.Collections.Generic;
+using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.Designers.Mechanics.Facts;
+using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.FactLogic;
-using Kingmaker.UnitLogic;
 using Kingmaker.Utility;
-using Harmony12;
+using ScalingCantripsKM.Config;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ScalingCantripsKM.Utilities
 {
@@ -26,7 +23,7 @@ namespace ScalingCantripsKM.Utilities
             if (spellList.isSpecialistSchool())
             {
                 List.SpellsByLevel[level].Spells.Add(spell);
-            } 
+            }
             else
             {
                 AddToListIfMissing();
@@ -95,7 +92,7 @@ namespace ScalingCantripsKM.Utilities
                 .AddArchetype(new SpellList("EldritchScoundrel", Spellbook: "ba0401fdeb4062f40a7aa95b6f07fe89", Cantrips: "0e451b208e7b855468986e03fcd4f990"));
             public static SpellList Shaman = new SpellList("Shaman", Spellbook: "7113337f695742559ecdecc8905b132a", Cantrips: "8051f445c28e451baf670036be2b6d8c", isCallOfTheWild: true);
             public static SpellList Sorcerer = new SpellList("Sorcerer", Spellbook: "ba0401fdeb4062f40a7aa95b6f07fe89", Cantrips: "c58b36ec3f759c84089c67611d1bcc21")
-                .AddArchetype( new SpellList("Empyreal", Cantrips: "6acb21fbc1bb76c4c9d65ba94c9f15ac"))
+                .AddArchetype(new SpellList("Empyreal", Cantrips: "6acb21fbc1bb76c4c9d65ba94c9f15ac"))
                 .AddArchetype(new SpellList("Sage", Spellbook: "ba0401fdeb4062f40a7aa95b6f07fe89", Cantrips: "50d700ea98467834c9fc622efa03d598"));
             public static SpellList Warpriest = new SpellList("Warpriest", Spellbook: "9ef48172d50446aca4c80f321402f743", Cantrips: "a5387ec4685944e1bc829acb84ca96a9", isCallOfTheWild: true);
             public static SpellList Witch = new SpellList("Witch", Spellbook: "422490cf62744e16a3e131efd94cf290", Cantrips: "86501dda312a4f548d579632c4a06c0f", isCallOfTheWild: true);
