@@ -73,6 +73,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Pathfinder Second Adventure\Wrath_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="UnityEngine.UI">
       <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Pathfinder Kingmaker\Kingmaker_Data\Managed\UnityEngine.UI.dll</HintPath>
     </Reference>
@@ -85,19 +86,23 @@
     <Compile Include="CantripAddRanged.cs" />
     <Compile Include="CantripFeatures.cs" />
     <Compile Include="CantripPatcher.cs" />
-    <Compile Include="Config\Blueprints.cs" />
+    <Compile Include="Blueprints.cs" />
+    <Compile Include="Config\Cantrip.cs" />
+    <Compile Include="Config\Labels.cs" />
+    <Compile Include="Config\Menu.cs" />
     <Compile Include="DataEntries\AddCasterStatToDamage.cs" />
     <Compile Include="DataEntries\HighestCasterLevel.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Config\Settings.cs" />
     <Compile Include="Utilities\ExtensionMethods.cs" />
+    <Compile Include="Utilities\GUIHelper.cs" />
     <Compile Include="Utilities\Helpers.cs" />
     <Compile Include="Utilities\SKMLogger.cs" />
     <Compile Include="Utilities\SpellTools.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Config\Blueprints.json" />
+    <None Include="blueprints.json" />
     <None Include="info.json" />
     <None Include="packages.config" />
   </ItemGroup>
@@ -106,10 +111,10 @@
   <PropertyGroup>
     <PostBuildEvent>mkdir $(ProjectDir)\bin\Output\
 mkdir $(ProjectDir)\bin\Output\$(ProjectName)
-mkdir $(ProjectDir)\bin\Output\$(ProjectName)\Config
+mkdir $(ProjectDir)\bin\Output\$(ProjectName)\UserSettings
 copy $(TargetPath) $(ProjectDir)\bin\Output\$(ProjectName)\$(TargetFileName)
 copy $(ProjectDir)\info.json $(ProjectDir)\bin\Output\$(ProjectName)\info.json
-copy $(ProjectDir)\Config\Blueprints.json $(ProjectDir)\bin\Output\$(ProjectName)\Config\Blueprints.json
+copy $(ProjectDir)\blueprints.json $(ProjectDir)\bin\Output\$(ProjectName)\blueprints.json
 cd $(ProjectDir)\bin\Output\
 tar.exe acvf $(ProjectName)-$(ConfigurationName).zip $(ProjectName)</PostBuildEvent>
   </PropertyGroup>

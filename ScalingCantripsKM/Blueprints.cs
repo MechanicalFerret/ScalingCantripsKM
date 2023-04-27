@@ -7,13 +7,13 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace ScalingCantripsKM.Config
+namespace ScalingCantripsKM
 {
     internal class Blueprints
     {
         // Blueprints Logic
-        private static string filename = "Blueprints.json";
-        private static string newFilename = "NewBlueprints.json";
+        private static string filename = "blueprints.json";
+        private static string newFilename = "new_blueprints.json";
 
         private static readonly Dictionary<string, BlueprintScriptableObject> ModBlueprints = new Dictionary<string, BlueprintScriptableObject>();
         private static readonly Dictionary<string, string> ModBlueprintNameToGUID = new Dictionary<string, string>();
@@ -22,7 +22,7 @@ namespace ScalingCantripsKM.Config
 
         public static void LoadBlueprints()
         {
-            string filePath = $"{Main.modEntry.Path}Config{Path.DirectorySeparatorChar}{filename}";
+            string filePath = $"{Main.modEntry.Path}{filename}";
             if (File.Exists(filePath))
             {
                 SKMLogger.Log($"Loading {filePath}");
@@ -37,7 +37,7 @@ namespace ScalingCantripsKM.Config
 
         public static void WriteBlueprints()
         {
-            string filePath = $"{Main.modEntry.Path}Config{Path.DirectorySeparatorChar}{newFilename}";
+            string filePath = $"{Main.modEntry.Path}{newFilename}";
             if (NewBlueprintNameToGUID.Count > 0)
             {
                 JsonSerializer serializer = new JsonSerializer
@@ -59,7 +59,7 @@ namespace ScalingCantripsKM.Config
             if (File.Exists(filePath))
             {
                 Main.modEntry.Enabled = false;
-                throw SKMLogger.Error($"A New Blueprints.json has been generated at {filePath}, must be added to a release.");
+                throw SKMLogger.Error($"A {newFilename} has been generated at {filePath}, must be added to a release.");
             }
         }
 

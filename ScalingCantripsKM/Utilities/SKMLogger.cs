@@ -7,7 +7,12 @@ namespace ScalingCantripsKM.Utilities
 {
     internal class SKMLogger
     {
-        static UnityModManager.ModEntry.ModLogger logger => Main.logger;
+        private static UnityModManager.ModEntry.ModLogger logger;
+
+        public static void InitializeLogger(UnityModManager.ModEntry modEntry)
+        {
+            logger = modEntry.Logger;
+        }
 
         public static void Log(string msg)
         {
@@ -31,23 +36,15 @@ namespace ScalingCantripsKM.Utilities
             Log($"WARNING: {msg}");
         }
 
-        public static Exception Error(string msg)
+        public static Exception Error(string msg = null, Exception ex = null)
         {
-            return Error(msg, null);
-        }
-
-        public static Exception Error(string msg, Exception ex = null)
-        {
+            if (msg != null) Log($"ERROR: {msg}");
             if (ex != null)
             {
-                Log("ERROR: " + msg + "\n" + ex.ToString() + "\n" + ex.StackTrace);
-                return new InvalidOperationException(msg, ex);
+                logger.LogException(ex);
+                return ex;
             }
-            else
-            {
-                Log("ERROR: " + msg);
-                return new InvalidOperationException(msg);
-            }
+            return new InvalidOperationException(msg);
         }
 
         public static void Patch(string action, [NotNull] BlueprintScriptableObject bp)

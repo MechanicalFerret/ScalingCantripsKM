@@ -2831,7 +2831,7 @@ namespace ScalingCantripsKM
         public static void Flush()
         {
             if (str.Length == 0) return;
-            Main.logger.Log(str.ToString());
+            SKMLogger.Log(str.ToString());
             str.Clear();
         }
 

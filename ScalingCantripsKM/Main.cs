@@ -12,11 +12,9 @@ namespace ScalingCantripsKM
     static class Main
     {
         internal static HarmonyInstance harmony;
-        public static UnityModManager.ModEntry modEntry;
-        public static UnityModManager.ModEntry.ModLogger logger;
-        public static LibraryScriptableObject library;
-        public static Settings settings;
-        public static bool isCallOfTheWildEnabled;
+        public static UnityModManager.ModEntry modEntry { get; private set; }
+        public static LibraryScriptableObject library { get; private set; }
+        public static bool isCallOfTheWildEnabled { get; private set; }
 
         static bool Load(UnityModManager.ModEntry modEntry)
         {
@@ -24,8 +22,8 @@ namespace ScalingCantripsKM
             {
                 // Setup Main Variables
                 Main.modEntry = modEntry;
-                Main.logger = modEntry.Logger;
-                Main.settings = UnityModManager.ModSettings.Load<Settings>(modEntry);
+                SKMLogger.InitializeLogger(modEntry);
+                Settings.LoadAllSettings(modEntry);
                 SKMLogger.Log("Loading ScalingCantripsKM");
 
                 // Setup UnityModManager GUI Functions
@@ -46,37 +44,27 @@ namespace ScalingCantripsKM
             }
             catch (Exception e)
             {
-                logger.LogException("Error loading ScalingCantripsKM", e);
-                throw e;
+                throw SKMLogger.Error("Unable to Load ScalingCantripsKM", e);
             }
             return true;
         }
 
-        private static void OnSaveGUI(UnityModManager.ModEntry modEntry)
-        {
-            Main.settings.Save(modEntry);
-            LibraryScriptableObject_LoadDictionary_Patch.hasRun = false;
-        }
 
         private static void OnGUI(UnityModManager.ModEntry modEntry)
         {
-            // Layout Options
-            GUILayoutOption[] options = new GUILayoutOption[]
+            try
             {
-                GUILayout.ExpandWidth(true),
-                GUILayout.MaxWidth(1000)
-            };
+                Menu.OnGUI();
+            }
+            catch (Exception e)
+            {
+                throw SKMLogger.Error("UI has encountered an error", e);
+            }
+        }
 
-            GUILayout.Label("FOR BEST EFFECT: restart the game after changing these settings.", options);
-            GUILayout.Label("Cantrips Caster Levels Required", options);
-            GUILayout.Label(Main.settings.casterLevelsReq.ToString(), options);
-            Main.settings.casterLevelsReq = (int)GUILayout.HorizontalSlider(Main.settings.casterLevelsReq, 1, 20, options);
-
-            GUILayout.Label("Cantrips Dice Maximum", options);
-            GUILayout.Label(Main.settings.maxDice.ToString(), options);
-            Main.settings.maxDice = (int)GUILayout.HorizontalSlider(Main.settings.maxDice, 1, 40, options);
-
-            Main.settings.startImmediately = GUILayout.Toggle(Main.settings.startImmediately, "Check this to have caster levels take effect immediately (e.g Wizard 2 gets you 2d3 with default settings)", options);
+        private static void OnSaveGUI(UnityModManager.ModEntry modEntry)
+        {
+            Settings.SaveAllSettings(modEntry);
         }
 
         [HarmonyPatch(typeof(LibraryScriptableObject), "LoadDictionary")]
@@ -93,7 +81,7 @@ namespace ScalingCantripsKM
                 library = __instance;
                 try
                 {
-                    logger.Log("Setting up Scaling Cantrips");
+                    SKMLogger.Log("Setting up Scaling Cantrips");
                     CantripPatcher.Init();
                     CantripAddRanged.Init();
                     CantripAddMelee.Init();
@@ -102,9 +90,8 @@ namespace ScalingCantripsKM
                 }
                 catch (Exception e)
                 {
-                    logger.LogException("Error Setting up ScalingCantripsKM", e);
                     Main.modEntry.Enabled = false;
-                    throw e;
+                    throw SKMLogger.Error("Unable to Patch ScalingCantripsKM", e);
                 }
 
             }
