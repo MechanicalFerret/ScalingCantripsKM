@@ -100,6 +100,7 @@ namespace ScalingCantripsKM
                 catch(Exception e)
                 {
                     logger.LogException("Error Setting up ScalingCantripsKM", e);
+                    Main.modEntry.Enabled = false;
                     throw e;
                 }
                 

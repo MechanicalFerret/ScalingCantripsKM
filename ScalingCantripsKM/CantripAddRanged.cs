@@ -84,7 +84,7 @@ namespace ScalingCantripsKM
                 {
                     c.School = SpellSchool.Evocation;
                 }));
-                var BaseValueType = ContextRankBaseValueType.CasterLevel;
+                var BaseValueType = ContextRankBaseValueType.CustomProperty;
                 var Progression = (Settings.StartImmediately) ? ContextRankProgression.OnePlusDivStep : ContextRankProgression.StartPlusDivStep;
                 var Type = AbilityRankType.Default;
                 var StartLevel = (Settings.StartImmediately) ? 0 : 1;
@@ -93,7 +93,8 @@ namespace ScalingCantripsKM
                 var Max = Settings.MaxDice;
                 var ExceptClasses = false;
                 var Stat = StatType.Unknown;
-                var RankConfig = Helpers.CreateContextRankConfig(BaseValueType, Progression, Type, Min, Max, StartLevel, StepLevel, ExceptClasses, Stat);
+                var CustomProperty = CantripPatcher.CreateHighestCasterLevel();
+                var RankConfig = Helpers.CreateContextRankConfig(BaseValueType, Progression, Type, Min, Max, StartLevel, StepLevel, ExceptClasses, Stat, CustomProperty);
                 bp.AddComponent(RankConfig);
                 bp.AddComponent(Helpers.Create<CantripComponent>());
                 ContextActionDealDamage dmgContext = Helpers.Create<ContextActionDealDamage>();
@@ -182,7 +183,7 @@ namespace ScalingCantripsKM
                 {
                     c.School = SpellSchool.Necromancy;
                 }));
-                var BaseValueType = ContextRankBaseValueType.CasterLevel;
+                var BaseValueType = ContextRankBaseValueType.CustomProperty;
                 var Progression = (Settings.StartImmediately) ? ContextRankProgression.OnePlusDivStep : ContextRankProgression.StartPlusDivStep;
                 var Type = AbilityRankType.Default;
                 var StartLevel = (Settings.StartImmediately) ? 0 : 1;
@@ -191,7 +192,8 @@ namespace ScalingCantripsKM
                 var Max = Settings.MaxDice;
                 var ExceptClasses = false;
                 var Stat = StatType.Unknown;
-                var RankConfig = Helpers.CreateContextRankConfig(BaseValueType, Progression, Type, Min, Max, StartLevel, StepLevel, ExceptClasses, Stat);
+                var CustomProperty = CantripPatcher.CreateHighestCasterLevel();
+                var RankConfig = Helpers.CreateContextRankConfig(BaseValueType, Progression, Type, Min, Max, StartLevel, StepLevel, ExceptClasses, Stat, CustomProperty);
                 bp.AddComponent(RankConfig);
                 bp.AddComponent(Helpers.Create<CantripComponent>());
                 bp.AddComponent(Helpers.Create<CantripComponent>());
@@ -288,7 +290,7 @@ namespace ScalingCantripsKM
                 {
                     c.School = SpellSchool.Divination;
                 }));
-                var BaseValueType = ContextRankBaseValueType.CasterLevel;
+                var BaseValueType = ContextRankBaseValueType.CustomProperty;
                 var Progression = (Settings.StartImmediately) ? ContextRankProgression.OnePlusDivStep : ContextRankProgression.StartPlusDivStep;
                 var Type = AbilityRankType.Default;
                 var StartLevel = (Settings.StartImmediately) ? 0 : 1;
@@ -297,7 +299,8 @@ namespace ScalingCantripsKM
                 var Max = Settings.MaxDice;
                 var ExceptClasses = false;
                 var Stat = StatType.Unknown;
-                var RankConfig = Helpers.CreateContextRankConfig(BaseValueType, Progression, Type, Min, Max, StartLevel, StepLevel, ExceptClasses, Stat);
+                var CustomProperty = CantripPatcher.CreateHighestCasterLevel();
+                var RankConfig = Helpers.CreateContextRankConfig(BaseValueType, Progression, Type, Min, Max, StartLevel, StepLevel, ExceptClasses, Stat, CustomProperty);
                 bp.AddComponent(RankConfig);
                 bp.AddComponent(Helpers.Create<CantripComponent>());
                 ContextActionDealDamage dmgContext = Helpers.Create<ContextActionDealDamage>();

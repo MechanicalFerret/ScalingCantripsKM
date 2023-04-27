@@ -13,38 +13,37 @@ namespace ScalingCantripsKM.Utilities
     {
         static UnityModManager.ModEntry.ModLogger logger => Main.logger;
 
-        public static void Log(String msg)
+        public static void Log(string msg)
         {
-            if (logger != null)
-            {
-                logger.Log(msg);
-            }
+            logger.Log(msg);
         }
 
         [System.Diagnostics.Conditional("DEBUG")]
-        public static void Debug(String msg)
+        public static void Debug(string msg)
         {
-            if (logger != null)
-            {
-                logger.Log(msg);
-            }
+            Log($"DEBUG: {msg}");
         }
 
-        public static Exception Error(String msg)
+        public static void Warning(string msg)
+        {
+            Log($"WARNING: {msg}");
+        }
+
+        public static Exception Error(string msg)
         {
             return Error(msg, null);
         }
 
-        public static Exception Error(String msg, Exception ex = null)
+        public static Exception Error(string msg, Exception ex = null)
         {
             if (ex != null)
             {
-                logger.Log(msg + "\n" + ex.ToString() + "\n" + ex.StackTrace);
+                Log("ERROR: " + msg + "\n" + ex.ToString() + "\n" + ex.StackTrace);
                 return new InvalidOperationException(msg, ex);
             }
             else
             {
-                logger.Log(msg);
+                Log("ERROR: " + msg);
                 return new InvalidOperationException(msg);
             }
         }

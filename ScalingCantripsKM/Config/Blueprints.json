@@ -1,9 +1,10 @@
 {
-  "nameToGUID": {
-    "SKMFirebolt": "c0dc7ec0-5934-4b03-8887-3f904ec5c468",
-    "SKMUnholyZapEffect": "5fc235dd-9de1-41d1-ad97-09b2b2188b68",
-    "SKMDivineZapEffect": "125d943e-48e6-4ee7-bad0-93f9bc30efd2",
-    "SKMJoltingGraspEffect": "6c4871c6-c3dc-4bac-81da-17c4e9f41874",
-    "SKMJoltingGrasp": "75c57c38-dcf3-4880-a23b-b559cec73ab0"
-  }
+    "nameToGUID": {
+        "SKMFirebolt": "c0dc7ec0-5934-4b03-8887-3f904ec5c468",
+        "SKMUnholyZapEffect": "5fc235dd-9de1-41d1-ad97-09b2b2188b68",
+        "SKMDivineZapEffect": "125d943e-48e6-4ee7-bad0-93f9bc30efd2",
+        "SKMJoltingGraspEffect": "6c4871c6-c3dc-4bac-81da-17c4e9f41874",
+        "SKMJoltingGrasp": "75c57c38-dcf3-4880-a23b-b559cec73ab0",
+        "SKMHighestCasterLevelCantrips": "6f50b7cc-945d-45f7-8cf6-db3700247a20"
+    }
 }

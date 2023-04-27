@@ -32,10 +32,7 @@ namespace ScalingCantripsKM.Config
                 {
                     JsonSerializer serializer = new JsonSerializer();
                     BlueprintJson json = (BlueprintJson)serializer.Deserialize(file, typeof(BlueprintJson));
-                    json.nameToGUID.ForEach(entry =>
-                    {
-                        ModBlueprintNameToGUID.Add(entry.Key, entry.Value);
-                    });
+                    json.nameToGUID.ForEach(entry => ModBlueprintNameToGUID.Add(entry.Key, entry.Value));
                 }
             }
         }
@@ -55,10 +52,8 @@ namespace ScalingCantripsKM.Config
                     using (JsonWriter jWriter = new JsonTextWriter(sWriter))
                     {
                         BlueprintJson json = new BlueprintJson();
-                        NewBlueprintNameToGUID.ForEach(entry =>
-                        {
-                            json.nameToGUID.Add(entry.Key, entry.Value);
-                        });
+                        ModBlueprintNameToGUID.ForEach(entry => json.nameToGUID.Add(entry.Key, entry.Value));
+                        NewBlueprintNameToGUID.ForEach(entry => json.nameToGUID.Add(entry.Key, entry.Value));
                         serializer.Serialize(jWriter, json);
                     }
                 }
@@ -66,8 +61,47 @@ namespace ScalingCantripsKM.Config
             if (File.Exists(filePath))
             {
                 Main.modEntry.Enabled = false;
-                throw SKMLogger.Error($"New Blueprints generated at {filePath}, must be added to a release. Are you on a Development Build?");
+                throw SKMLogger.Error($"A New Blueprints.json has been generated at {filePath}, must be added to a release.");
             }
+        }
+
+        public static string GetGUID(string name)
+        {
+            if (!ModBlueprintNameToGUID.TryGetValue(name, out var id))
+            {
+                #if DEBUG
+                if (!NewBlueprintNameToGUID.TryGetValue(name, out var newId))
+                {
+                    id = Guid.NewGuid().ToString();
+                    NewBlueprintNameToGUID.Add(name, id);
+                    SKMLogger.Debug($"Generating new GUID for {name}: {id}");
+                }
+                else
+                {
+                    id = newId;
+                }
+                #endif
+            }
+            if (id == null)
+            {
+                Main.modEntry.Enabled = false;
+                SKMLogger.Error($"GUID for {name} not found, Blueprints.json may be out of date.");
+            }
+            return id;
+        }
+
+        public static T GetModBlueprint<T>(string name) where T : BlueprintScriptableObject
+        {
+            var assetId = GetGUID(name);
+            ModBlueprints.TryGetValue(assetId, out var modBlueprint);
+            return modBlueprint as T;
+        }
+
+        public static T GetBlueprint<T>(string id) where T : BlueprintScriptableObject
+        {
+            ModBlueprints.TryGetValue(id, out var value);
+            if (value == null) value = library.TryGet<T>(id) as T;
+            return value as T;
         }
 
         public static T CreateBlueprint<T>([NotNull] string name, Action<T> init = null) where T : BlueprintScriptableObject
@@ -78,24 +112,6 @@ namespace ScalingCantripsKM.Config
             AddBlueprint(result);
             init?.Invoke(result);
             return result;
-        }
-
-        public static string GetGUID(string name)
-        {
-            ModBlueprintNameToGUID.TryGetValue(name, out var id);
-            if (id == null) // Should only occur in development builds.
-            {
-                id = Guid.NewGuid().ToString();
-                NewBlueprintNameToGUID[name] = id;
-            }
-            return id;
-        }
-
-        public static T GetBlueprint<T>(string id) where T : BlueprintScriptableObject
-        {
-            ModBlueprints.TryGetValue(id, out var value);
-            if (value == null) value = library.TryGet<T>(id) as T;
-            return value as T;
         }
 
         public static void AddBlueprint(BlueprintScriptableObject blueprint, string id = null)
