@@ -7,13 +7,13 @@ This is a backport of the <a href="https://github.com/RealityMachina/Scaling-Can
 
 ## Missing Features
 - Configurable damage and on/off switches for specific Cantrips, there is just a general config for all at the moment.
-- Cantrip Expert feats from the WoTR mod
-- Scaling patch for the Virtue cantrip
 - Any fixes related to item interactions
 - A way to disable the mod for a save file and safely uninstall
 
-## Call of the Wild Compatibility
-Given how popular the mod is (I use it anyway) I've made sure this mod will work with the classes added by that mod. However if you do not use CallOfTheWild no problem, the mod is not dependant at all on it.
+## WIP: Call of the Wild Support
+While this mod does not require Call Of The Wild, a desired feature of mine is to make sure this mod is supported since its one of the most popular Kingmaker mods that adds a slew of new content. Currently the support for this mod mainly extends to the base classes added by it.
+
+If you notice a part of CallOfTheWild is not supported by this mod please feel free to check the Issues section and open an enhancement!
 
 ## How to Install
 - Download and install <a href="https://github.com/newman55/unity-mod-manager">Unity Mod Manager</a> with at least version 0.25.4.0
