@@ -105,6 +105,7 @@
     <None Include="blueprints.json" />
     <None Include="info.json" />
     <None Include="packages.config" />
+    <None Include="release.json" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

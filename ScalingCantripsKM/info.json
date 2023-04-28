@@ -6,5 +6,6 @@
     "ManagerVersion": "0.25.4.0",
     "AssemblyName": "ScalingCantripsKM.dll",
     "EntryMethod": "ScalingCantripsKM.Main.Load",
-    "HomePage": "https://github.com/MechanicalFerret/ScalingCantripsKM"
+    "HomePage": "https://github.com/MechanicalFerret/ScalingCantripsKM",
+    "Repository": "https://github.com/MechanicalFerret/ScalingCantripsKM/raw/master/ScalingCantripsKM/release.json"
 }
