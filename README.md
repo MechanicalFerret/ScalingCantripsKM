@@ -1,12 +1,12 @@
 # Scaling Cantrips: Kingmaker
-This is a backport of the <a href="https://github.com/RealityMachina/Scaling-Cantrips">ScalingCantrips</a> mod for Wrath of the Righteous to Kingmaker.
+This is a backport of the <a href="https://github.com/RealityMachina/Scaling-Cantrips">Scaling-Cantrips</a> mod for Wrath of the Righteous to Kingmaker.
 
 ## Features
 - All damage cantrips (Ray of Frost, Acid Splash, etc) increase the number of damage dice used for every 2 caster levels (configurable).
 - Adds additional cantrips from the WoTR mod (Firebolt, Jolting Grasp, Divine Zap, Unholy Zap)
+- Cantrip Expert feats for adding spellcasting ability modifiers to damage rolls.
 
 ## Missing Features
-- Configurable damage and on/off switches for specific Cantrips, there is just a general config for all at the moment.
 - Any fixes related to item interactions
 - A way to disable the mod for a save file and safely uninstall
 
@@ -24,6 +24,8 @@ If you notice a part of CallOfTheWild is not supported by this mod please feel f
 ## Uninstallation
 Unfortunately given the nature of modifying database blueprints in the game there is no easy way to uninstall the mod once its been saved to your file, you have been warned. If you are ok with this then you can simply right click the mod in UMM and click "Uninstall".
 
-## Credits
-RealityMachina's <a href="https://github.com/RealityMachina/Scaling-Cantrips">ScalingCantrips</a> mod for Wrath of the Righteous was the basis of the code here. Much of it was referenced or directly lifted given the similarities in databases. \
-Holic75's <a href="https://github.com/Holic75/KingmakerRebalance">Call of the Wild</a> provided useful helper methods and insight onto how modding Kingmaker even works.
+## Thanks
+- RealityMachina's <a href="https://github.com/RealityMachina/Scaling-Cantrips">ScalingCantrips</a> for the original mod where much of this code was taken or referenced.
+- Holic75's <a href="https://github.com/Holic75/KingmakerRebalance">Call of the Wild</a> provided useful helper methods and insight onto how modding Kingmaker even works.
+- Hsinyu's <a href="https://www.nexusmods.com/pathfinderkingmaker/mods/106">Data Viewer</a> was vital for looking up database ids for the stuff not shared with WoTR
+- My cat for never leaving me alone.

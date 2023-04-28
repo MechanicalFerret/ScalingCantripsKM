@@ -19,8 +19,6 @@ namespace ScalingCantripsKM
 {
     internal class CantripAddMelee
     {
-        static LibraryScriptableObject library => Main.library;
-
         public static void Init()
         {
             SKMLogger.Log("Adding New Melee Cantrips");
@@ -29,6 +27,9 @@ namespace ScalingCantripsKM
 
         static void AddJoltingGrasp()
         {
+            Cantrip config = Settings.JoltingGrasp;
+            SKMLogger.Setting(config.Enabled, "Creating & Adding Jolting Grasp", "Creating Jolting Grasp");
+
             SKMLogger.Log("Adding Jolting Grasp");
             var ShockingGrasp = Blueprints.GetBlueprint<BlueprintAbility>("17451c1327c571641a1345bd31155209");
             var TouchReference = Blueprints.GetBlueprint<BlueprintItemWeapon>("bb337517547de1a4189518d404ec49d4");
@@ -38,7 +39,7 @@ namespace ScalingCantripsKM
                 bp.SetIcon(ShockingGrasp.Icon);
                 bp.SetName("Jolting Grasp");
                 bp.SetDescription("Your successful melee {g|Encyclopedia:TouchAttack}touch attack{/g} deals {g|Encyclopedia:Dice}1d3{/g} points of {g|Encyclopedia:Energy_Damage}electricity damage{/g} per "
-                    + Settings.CasterLevelsReq + " {g|Encyclopedia:Caster_Level}caster level(s){/g} (maximum " + Settings.MaxDice +
+                    + config.CasterLevelsReq + " {g|Encyclopedia:Caster_Level}caster level(s){/g} (maximum " + config.MaxDice +
                     "d6)" + " When delivering the jolt, you gain a +3 {g|Encyclopedia:Bonus}bonus{/g} on {g|Encyclopedia:Attack}attack rolls{/g} if the opponent is wearing metal armor (or is carrying a metal weapon or is made of metal).");
                 bp.SpellResistance = true;
                 bp.CanTargetEnemies = true;
@@ -74,12 +75,12 @@ namespace ScalingCantripsKM
 
                 // TODO: Check here again for Settings of Jolting Grasp
                 var BaseValueType = ContextRankBaseValueType.CustomProperty;
-                var Progression = (Settings.StartImmediately) ? ContextRankProgression.OnePlusDivStep : ContextRankProgression.StartPlusDivStep;
+                var Progression = (config.StartImmediately) ? ContextRankProgression.OnePlusDivStep : ContextRankProgression.StartPlusDivStep;
                 var Type = AbilityRankType.Default;
-                var StartLevel = (Settings.StartImmediately) ? 0 : 1;
-                var StepLevel = Settings.CasterLevelsReq;
+                var StartLevel = (config.StartImmediately) ? 0 : 1;
+                var StepLevel = config.CasterLevelsReq;
                 var Min = 1;
-                var Max = Settings.MaxDice;
+                var Max = config.MaxDice;
                 var ExceptClasses = false;
                 var Stat = StatType.Unknown;
                 var CustomProperty = CantripPatcher.CreateHighestCasterLevel();
@@ -124,8 +125,8 @@ namespace ScalingCantripsKM
             {
                 bp.SetIcon(ShockingGrasp.Icon);
                 bp.SetName("Jolting Grasp");
-                bp.SetDescription("Your successful melee {g|Encyclopedia:TouchAttack}touch attack{/g} deals {g|Encyclopedia:Dice}1d3{/g} points of {g|Encyclopedia:Energy_Damage}electricity damage{/g} per " + Settings.CasterLevelsReq +
-                    " {g|Encyclopedia:Caster_Level}caster level(s){/g} (maximum " + Settings.MaxDice + "d3)" +
+                bp.SetDescription("Your successful melee {g|Encyclopedia:TouchAttack}touch attack{/g} deals {g|Encyclopedia:Dice}1d3{/g} points of {g|Encyclopedia:Energy_Damage}electricity damage{/g} per " + config.CasterLevelsReq +
+                    " {g|Encyclopedia:Caster_Level}caster level(s){/g} (maximum " + config.MaxDice + "d3)" +
                     " When delivering the jolt, you gain a +3 {g|Encyclopedia:Bonus}bonus{/g} on {g|Encyclopedia:Attack}attack rolls{/g} if the opponent is wearing metal armor (or is carrying a metal weapon or is made of metal).");
                 bp.SpellResistance = true;
                 bp.CanTargetEnemies = true;

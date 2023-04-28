@@ -18,8 +18,6 @@ namespace ScalingCantripsKM
 {
     internal class CantripAddRanged
     {
-        static LibraryScriptableObject library => Main.library;
-
         public static void Init()
         {
             SKMLogger.Log("Adding New Ranged Cantrips");
@@ -30,7 +28,9 @@ namespace ScalingCantripsKM
 
         static void AddFirebolt()
         {
-            SKMLogger.Log("Adding Firebolt");
+            Cantrip config = Settings.Firebolt;
+            SKMLogger.Setting(config.Enabled, "Creating & Adding Firebolt", "Creating Firebolt");
+
             var IconRef = Blueprints.GetBlueprint<BlueprintAbility>("42a65895ba0cb3a42b6019039dd2bff1");
             var ProjectilRef = Blueprints.GetBlueprint<BlueprintProjectile>("8cc159ce94d29fe46a94b80ce549161f");
             var WeaponRef = Blueprints.GetBlueprint<BlueprintItemWeapon>("f6ef95b1f7bb52b408a5b345a330ffe8");
@@ -39,7 +39,7 @@ namespace ScalingCantripsKM
                 bp.SetIcon(IconRef.Icon);
                 bp.SetName("Firebolt");
                 bp.SetDescription("You unleash a bolt of fire via a ranged touch attack. If successful, the target takes {g|Encyclopedia:Dice}1d3{/g} points of fire {g|Encyclopedia:Damage}damage{/g}; for every "
-                    + Settings.CasterLevelsReq + " caster level(s), another dice is added up to a max of " + Settings.MaxDice +
+                    + config.CasterLevelsReq + " caster level(s), another dice is added up to a max of " + config.MaxDice +
                     "d3.");
                 //bp.m_TargetMapObjects = true;
                 bp.Range = AbilityRange.Close;
@@ -75,12 +75,12 @@ namespace ScalingCantripsKM
                     c.School = SpellSchool.Evocation;
                 }));
                 var BaseValueType = ContextRankBaseValueType.CustomProperty;
-                var Progression = (Settings.StartImmediately) ? ContextRankProgression.OnePlusDivStep : ContextRankProgression.StartPlusDivStep;
+                var Progression = (config.StartImmediately) ? ContextRankProgression.OnePlusDivStep : ContextRankProgression.StartPlusDivStep;
                 var Type = AbilityRankType.Default;
-                var StartLevel = (Settings.StartImmediately) ? 0 : 1;
-                var StepLevel = Settings.CasterLevelsReq;
+                var StartLevel = (config.StartImmediately) ? 0 : 1;
+                var StepLevel = config.CasterLevelsReq;
                 var Min = 1;
-                var Max = Settings.MaxDice;
+                var Max = config.MaxDice;
                 var ExceptClasses = false;
                 var Stat = StatType.Unknown;
                 var CustomProperty = CantripPatcher.CreateHighestCasterLevel();
@@ -121,17 +121,25 @@ namespace ScalingCantripsKM
                 }));
             });
 
-            SpellTools.AddSpell(Firebolt, SpellTools.SpellList.Arcanist);
-            SpellTools.AddSpell(Firebolt, SpellTools.SpellList.Inquisitor);
-            SpellTools.AddSpell(Firebolt, SpellTools.SpellList.Magus);
-            SpellTools.AddSpell(Firebolt, SpellTools.SpellList.Rogue);
-            SpellTools.AddSpell(Firebolt, SpellTools.SpellList.Sorcerer);
-            SpellTools.AddSpell(Firebolt, SpellTools.SpellList.Wizard);
+            // We still need to create Firebolt incase someone already saved their game with it enabled but we wont add it to the spell list.
+            // TODO: If we can move when the mod loads to when the game itself loads rather than at the loading screen we could also remove it
+            // from an existing spell list. Not sure how to do that just yet.
+            if (config.Enabled)
+            {
+                SpellTools.AddSpell(Firebolt, SpellTools.SpellList.Arcanist);
+                SpellTools.AddSpell(Firebolt, SpellTools.SpellList.Inquisitor);
+                SpellTools.AddSpell(Firebolt, SpellTools.SpellList.Magus);
+                SpellTools.AddSpell(Firebolt, SpellTools.SpellList.Rogue);
+                SpellTools.AddSpell(Firebolt, SpellTools.SpellList.Sorcerer);
+                SpellTools.AddSpell(Firebolt, SpellTools.SpellList.Wizard);
+            }            
         }
 
         static void AddUnholyZap()
         {
-            SKMLogger.Log("Adding Unholy Zap");
+            Cantrip config = Settings.UnholyZap;
+            SKMLogger.Setting(config.Enabled, "Creating & Adding Unholy Zap", "Creating Unholy Zap");
+
             var IconRef = Blueprints.GetBlueprint<BlueprintAbility>("fa3078b9976a5b24caf92e20ee9c0f54");
             var ProjectileRef = Blueprints.GetBlueprint<BlueprintProjectile>("fe47a7660448bc54289823b07547bbe8");
             var WeaponRef = Blueprints.GetBlueprint<BlueprintItemWeapon>("f6ef95b1f7bb52b408a5b345a330ffe8");
@@ -141,7 +149,7 @@ namespace ScalingCantripsKM
                 bp.SetIcon(IconRef.Icon);
                 bp.SetName("Unholy Zap");
                 bp.SetDescription("You unleash your unholy powers against a single target. The target takes {g|Encyclopedia:Dice}1d3{/g} points of negative {g|Encyclopedia:Damage}damage{/g}; for every "
-                    + Settings.CasterLevelsReq + " caster level(s), another dice is added up to a max of " + Settings.MaxDice +
+                    + config.CasterLevelsReq + " caster level(s), another dice is added up to a max of " + config.MaxDice +
                     "d3. Fortitude saves if successful, halves damage.");
                 //bp.m_TargetMapObjects = true;
                 bp.Range = AbilityRange.Close;
@@ -174,12 +182,12 @@ namespace ScalingCantripsKM
                     c.School = SpellSchool.Necromancy;
                 }));
                 var BaseValueType = ContextRankBaseValueType.CustomProperty;
-                var Progression = (Settings.StartImmediately) ? ContextRankProgression.OnePlusDivStep : ContextRankProgression.StartPlusDivStep;
+                var Progression = (config.StartImmediately) ? ContextRankProgression.OnePlusDivStep : ContextRankProgression.StartPlusDivStep;
                 var Type = AbilityRankType.Default;
-                var StartLevel = (Settings.StartImmediately) ? 0 : 1;
-                var StepLevel = Settings.CasterLevelsReq;
+                var StartLevel = (config.StartImmediately) ? 0 : 1;
+                var StepLevel = config.CasterLevelsReq;
                 var Min = 1;
-                var Max = Settings.MaxDice;
+                var Max = config.MaxDice;
                 var ExceptClasses = false;
                 var Stat = StatType.Unknown;
                 var CustomProperty = CantripPatcher.CreateHighestCasterLevel();
@@ -223,13 +231,16 @@ namespace ScalingCantripsKM
                 }));
             });
 
-            SpellTools.AddSpell(UnholyZap, SpellTools.SpellList.Cleric);
-            SpellTools.AddSpell(UnholyZap, SpellTools.SpellList.Druid);
-            SpellTools.AddSpell(UnholyZap, SpellTools.SpellList.Inquisitor);
-            SpellTools.AddSpell(UnholyZap, SpellTools.SpellList.Oracle);
-            SpellTools.AddSpell(UnholyZap, SpellTools.SpellList.Shaman);
-            SpellTools.AddSpell(UnholyZap, SpellTools.SpellList.Warpriest);
-            SpellTools.AddSpell(UnholyZap, SpellTools.SpellList.Witch);
+            if (config.Enabled)
+            {
+                SpellTools.AddSpell(UnholyZap, SpellTools.SpellList.Cleric);
+                SpellTools.AddSpell(UnholyZap, SpellTools.SpellList.Druid);
+                SpellTools.AddSpell(UnholyZap, SpellTools.SpellList.Inquisitor);
+                SpellTools.AddSpell(UnholyZap, SpellTools.SpellList.Oracle);
+                SpellTools.AddSpell(UnholyZap, SpellTools.SpellList.Shaman);
+                SpellTools.AddSpell(UnholyZap, SpellTools.SpellList.Warpriest);
+                SpellTools.AddSpell(UnholyZap, SpellTools.SpellList.Witch);
+            }
         }
 
         // Divine Zap
@@ -238,7 +249,9 @@ namespace ScalingCantripsKM
         // Projectile Arrow of Law: d543d55f7fdb60340af40ea8fc5e686d
         static void AddDivineZap()
         {
-            SKMLogger.Log("Adding Divine Zap");
+            Cantrip config = Settings.DivineZap;
+            SKMLogger.Setting(config.Enabled, "Creating & Adding Divine Zap", "Creating Divine Zap");
+
             var IconRef = Blueprints.GetBlueprint<BlueprintAbility>("bf0accce250381a44b857d4af6c8e10d");
             var ProjectileRef = Blueprints.GetBlueprint<BlueprintProjectile>("8cc159ce94d29fe46a94b80ce549161f");
             var WeaponRef = Blueprints.GetBlueprint<BlueprintItemWeapon>("f6ef95b1f7bb52b408a5b345a330ffe8");
@@ -248,7 +261,7 @@ namespace ScalingCantripsKM
                 bp.SetIcon(IconRef.Icon);
                 bp.SetName("Divine Zap");
                 bp.SetDescription("You unleash your divine powers against a single target. The target takes {g|Encyclopedia:Dice}1d3{/g} points of positive {g|Encyclopedia:Damage}damage{/g}; for every "
-                    + Settings.CasterLevelsReq + " caster level(s), another dice is added up to a max of " + Settings.MaxDice +
+                    + config.CasterLevelsReq + " caster level(s), another dice is added up to a max of " + config.MaxDice +
                     "d3. Fortitude saves if successful, halves damage.");
                 //bp.m_TargetMapObjects = true;
                 bp.Range = AbilityRange.Close;
@@ -281,12 +294,12 @@ namespace ScalingCantripsKM
                     c.School = SpellSchool.Divination;
                 }));
                 var BaseValueType = ContextRankBaseValueType.CustomProperty;
-                var Progression = (Settings.StartImmediately) ? ContextRankProgression.OnePlusDivStep : ContextRankProgression.StartPlusDivStep;
+                var Progression = (config.StartImmediately) ? ContextRankProgression.OnePlusDivStep : ContextRankProgression.StartPlusDivStep;
                 var Type = AbilityRankType.Default;
-                var StartLevel = (Settings.StartImmediately) ? 0 : 1;
-                var StepLevel = Settings.CasterLevelsReq;
+                var StartLevel = (config.StartImmediately) ? 0 : 1;
+                var StepLevel = config.CasterLevelsReq;
                 var Min = 1;
-                var Max = Settings.MaxDice;
+                var Max = config.MaxDice;
                 var ExceptClasses = false;
                 var Stat = StatType.Unknown;
                 var CustomProperty = CantripPatcher.CreateHighestCasterLevel();
@@ -329,13 +342,16 @@ namespace ScalingCantripsKM
                 }));
             });
 
-            SpellTools.AddSpell(DivineZap, SpellTools.SpellList.Cleric);
-            SpellTools.AddSpell(DivineZap, SpellTools.SpellList.Druid);
-            SpellTools.AddSpell(DivineZap, SpellTools.SpellList.Inquisitor);
-            SpellTools.AddSpell(DivineZap, SpellTools.SpellList.Oracle);
-            SpellTools.AddSpell(DivineZap, SpellTools.SpellList.Shaman);
-            SpellTools.AddSpell(DivineZap, SpellTools.SpellList.Warpriest);
-            SpellTools.AddSpell(DivineZap, SpellTools.SpellList.Witch);
+            if (config.Enabled)
+            {
+                SpellTools.AddSpell(DivineZap, SpellTools.SpellList.Cleric);
+                SpellTools.AddSpell(DivineZap, SpellTools.SpellList.Druid);
+                SpellTools.AddSpell(DivineZap, SpellTools.SpellList.Inquisitor);
+                SpellTools.AddSpell(DivineZap, SpellTools.SpellList.Oracle);
+                SpellTools.AddSpell(DivineZap, SpellTools.SpellList.Shaman);
+                SpellTools.AddSpell(DivineZap, SpellTools.SpellList.Warpriest);
+                SpellTools.AddSpell(DivineZap, SpellTools.SpellList.Witch);
+            }
         }
     }
 }

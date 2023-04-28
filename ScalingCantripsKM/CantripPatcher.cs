@@ -19,8 +19,6 @@ namespace ScalingCantripsKM
 {
     internal class CantripPatcher
     {
-        static LibraryScriptableObject library => Main.library;
-
         public static void Init()
         {
             SKMLogger.Log("Patching Existing Cantrips");
@@ -30,25 +28,26 @@ namespace ScalingCantripsKM
             BlueprintAbility DisruptUndead = Blueprints.GetBlueprint<BlueprintAbility>("652739779aa05504a9ad5db1db6d02ae");
             BlueprintBuff VirtueBuff = Blueprints.GetBlueprint<BlueprintBuff>("a13ad2502d9e4904082868eb71efb0c5");
             BlueprintAbility Virtue = Blueprints.GetBlueprint<BlueprintAbility>("d3a852385ba4cd740992d1970170301a");
-            EditAndAddAbility(AcidSplash, D3);
-            EditAndAddAbility(RayOfFrost, D3);
-            EditAndAddAbility(Jolt, D3);
-            EditAndAddAbility(DisruptUndead, D6);
-            EditVirtue(VirtueBuff, Virtue);
+            EditAndAddAbility(Settings.AcidSplash, AcidSplash, D3);
+            EditAndAddAbility(Settings.RayOfFrost, RayOfFrost, D3);
+            EditAndAddAbility(Settings.Jolt, Jolt, D3);
+            EditAndAddAbility(Settings.DisruptUndead, DisruptUndead, D6);
+            EditVirtue(Settings.Virtue, VirtueBuff, Virtue);
         }
 
-        private static void EditAndAddAbility(BlueprintAbility cantrip, Kingmaker.RuleSystem.DiceType diceType)
+        private static void EditAndAddAbility(Cantrip config, BlueprintAbility cantrip, Kingmaker.RuleSystem.DiceType diceType)
         {
+            if (!config.Enabled) return;
             SKMLogger.Log($"Patching: {cantrip.name}");
 
             // Rank Config Creation
             var BaseValueType = ContextRankBaseValueType.CustomProperty;
-            var Progression = (Settings.StartImmediately) ? ContextRankProgression.OnePlusDivStep : ContextRankProgression.StartPlusDivStep;
+            var Progression = (config.StartImmediately) ? ContextRankProgression.OnePlusDivStep : ContextRankProgression.StartPlusDivStep;
             var Type = AbilityRankType.Default;
-            var StartLevel = (Settings.StartImmediately) ? 0 : 1;
-            var StepLevel = Settings.CasterLevelsReq;
+            var StartLevel = (config.StartImmediately) ? 0 : 1;
+            var StepLevel = config.CasterLevelsReq;
             var Min = 1;
-            var Max = Settings.MaxDice;
+            var Max = config.MaxDice;
             var ExceptClasses = false;
             var Stat = StatType.Unknown;
             var CustomProperty = CreateHighestCasterLevel();
@@ -66,20 +65,23 @@ namespace ScalingCantripsKM
             // Unfortuantely mods that change the damage type of cantrips (like CallOfTheWild) will have their damage dice show up incorrectly
             // in the description. Not sure if this should be accounted for but its a known issue.
             var description = cantrip.Description.Replace($"d{(int)oldDiceType}", $"d{(int)diceType}");
-            var newString = $"{description} Damage dice is increased by 1 every {Settings.CasterLevelsReq} caster level(s), up to a maximum of {Settings.MaxDice}d{(int)diceType}.";
+            var newString = $"{description} Damage dice is increased by 1 every {config.CasterLevelsReq} caster level(s), up to a maximum of {config.MaxDice}d{(int)diceType}.";
             cantrip.SetDescription(newString);
         }
 
-        private static void EditVirtue(BlueprintBuff buff, BlueprintAbility cantrip)
+        private static void EditVirtue(Cantrip config, BlueprintBuff buff, BlueprintAbility cantrip)
         {
-            // Rank Config
+            if (!config.Enabled) return;
+            SKMLogger.Log($"Patching: {cantrip.name}");
+
+            // Rank Config Creation
             var BaseValueType = ContextRankBaseValueType.CustomProperty;
-            var Progression = (Settings.StartImmediately) ? ContextRankProgression.OnePlusDivStep : ContextRankProgression.StartPlusDivStep;
+            var Progression = (config.StartImmediately) ? ContextRankProgression.OnePlusDivStep : ContextRankProgression.StartPlusDivStep;
             var Type = AbilityRankType.Default;
-            var StartLevel = (Settings.StartImmediately) ? 0 : 1;
-            var StepLevel = Settings.CasterLevelsReq;
+            var StartLevel = (config.StartImmediately) ? 0 : 1;
+            var StepLevel = config.CasterLevelsReq;
             var Min = 1;
-            var Max = Settings.MaxDice;
+            var Max = config.MaxDice;
             var ExceptClasses = false;
             var Stat = StatType.Unknown;
             var CustomProperty = CreateHighestCasterLevel();
@@ -99,8 +101,8 @@ namespace ScalingCantripsKM
             }
 
             var newString = buff.Description;
-            newString += "For every " + Settings.CasterLevelsReq + " caster level(s) the caster has, Virtue will grant another point of temporary HP, up to "
-                + Settings.MaxDice + " points total.";
+            newString += "For every " + config.CasterLevelsReq + " caster level(s) the caster has, Virtue will grant another point of temporary HP, up to "
+                + config.MaxDice + " points total.";
             buff.SetDescription(newString);
             cantrip.SetDescription(newString);
         }
