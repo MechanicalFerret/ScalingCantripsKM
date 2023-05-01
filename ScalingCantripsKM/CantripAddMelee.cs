@@ -39,8 +39,8 @@ namespace ScalingCantripsKM
                 bp.SetIcon(ShockingGrasp.Icon);
                 bp.SetName("Jolting Grasp");
                 bp.SetDescription("Your successful melee {g|Encyclopedia:TouchAttack}touch attack{/g} deals {g|Encyclopedia:Dice}1d3{/g} points of {g|Encyclopedia:Energy_Damage}electricity damage{/g} per "
-                    + config.CasterLevelsReq + " {g|Encyclopedia:Caster_Level}caster level(s){/g} (maximum " + config.MaxDice +
-                    "d6)" + " When delivering the jolt, you gain a +3 {g|Encyclopedia:Bonus}bonus{/g} on {g|Encyclopedia:Attack}attack rolls{/g} if the opponent is wearing metal armor (or is carrying a metal weapon or is made of metal).");
+                    + config.CasterLevelsReq + " {g|Encyclopedia:Caster_Level}caster level(s){/g} (maximum " + config.MaxDice + "d3)");
+                    //" When delivering the jolt, you gain a +3 {g|Encyclopedia:Bonus}bonus{/g} on {g|Encyclopedia:Attack}attack rolls{/g} if the opponent is wearing metal armor (or is carrying a metal weapon or is made of metal).");
                 bp.SpellResistance = true;
                 bp.CanTargetEnemies = true;
                 bp.CanTargetSelf = false;
@@ -125,8 +125,8 @@ namespace ScalingCantripsKM
                 bp.SetIcon(ShockingGrasp.Icon);
                 bp.SetName("Jolting Grasp");
                 bp.SetDescription("Your successful melee {g|Encyclopedia:TouchAttack}touch attack{/g} deals {g|Encyclopedia:Dice}1d3{/g} points of {g|Encyclopedia:Energy_Damage}electricity damage{/g} per " + config.CasterLevelsReq +
-                    " {g|Encyclopedia:Caster_Level}caster level(s){/g} (maximum " + config.MaxDice + "d3)" +
-                    " When delivering the jolt, you gain a +3 {g|Encyclopedia:Bonus}bonus{/g} on {g|Encyclopedia:Attack}attack rolls{/g} if the opponent is wearing metal armor (or is carrying a metal weapon or is made of metal).");
+                    " {g|Encyclopedia:Caster_Level}caster level(s){/g} (maximum " + config.MaxDice + "d3)");
+                    //" When delivering the jolt, you gain a +3 {g|Encyclopedia:Bonus}bonus{/g} on {g|Encyclopedia:Attack}attack rolls{/g} if the opponent is wearing metal armor (or is carrying a metal weapon or is made of metal).");
                 bp.SpellResistance = true;
                 bp.CanTargetEnemies = true;
                 bp.CanTargetSelf = false;

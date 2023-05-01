@@ -131,6 +131,7 @@ namespace ScalingCantripsKM
                 SpellTools.AddSpell(Firebolt, SpellTools.SpellList.Magus);
                 SpellTools.AddSpell(Firebolt, SpellTools.SpellList.Rogue);
                 SpellTools.AddSpell(Firebolt, SpellTools.SpellList.Sorcerer);
+                SpellTools.AddSpell(Firebolt, SpellTools.SpellList.Summoner);
                 SpellTools.AddSpell(Firebolt, SpellTools.SpellList.Wizard);
             }            
         }
