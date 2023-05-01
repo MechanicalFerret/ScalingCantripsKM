@@ -79,8 +79,8 @@ namespace ScalingCantripsKM.Utilities
 
         public class SpellList
         {
-            public static SpellList Arcanist = new SpellList("Arcanist", Spellbook: "ba0401fdeb4062f40a7aa95b6f07fe89", Cantrips: "3a5bd474be40421484c1aeb9d79870c9", isCallOfTheWild: true);
-            public static SpellList Bloodrager = new SpellList("Bloodrager", Spellbook: "e93c0b4113f2498f8f206b3fe02f7964", isCallOfTheWild: true);
+            public static SpellList Arcanist = new SpellList("Arcanist", Spellbook: "ba0401fdeb4062f40a7aa95b6f07fe89", Cantrips: "3a5bd474be40421484c1aeb9d79870c9", isCallOfTheWild: true)
+                .AddArchetype(new SpellList("Unlettered Arcanist", Cantrips: "532ce6fd6fad4e1d9316785bcc09b02f", isCallOfTheWild: true));
             public static SpellList Cleric = new SpellList("Cleric", Spellbook: "8443ce803d2d31347897a3d85cc32f53", Cantrips: "e62f392949c24eb4b8fb2bc9db4345e3");
             public static SpellList Druid = new SpellList("Druid", Spellbook: "bad8638d40639d04fa2f80a1cac67d6b", Cantrips: "f2ed91cc202bd344691eef91eb6d5d1a")
                 .AddArchetype(new SpellList("Feyspeaker", Spellbook: "640b4c89527334e45b19d884dd82e500", Cantrips: "27b2bc1b3589cc54491b78966e8013e6"));
@@ -90,12 +90,15 @@ namespace ScalingCantripsKM.Utilities
             public static SpellList Oracle = new SpellList("Oracle", Spellbook: "f305174b73f64783a8379238a14c3283", Cantrips: "efe37da91f6c4ae5917beb8ec215e02f", isCallOfTheWild: true);
             public static SpellList Rogue = new SpellList("Rogue")
                 .AddArchetype(new SpellList("EldritchScoundrel", Spellbook: "ba0401fdeb4062f40a7aa95b6f07fe89", Cantrips: "0e451b208e7b855468986e03fcd4f990"));
+            public static SpellList Skald = new SpellList("Skald", Cantrips: "f9af3671a1194051928f4c3120e6ae24", isCallOfTheWild: true);
             public static SpellList Shaman = new SpellList("Shaman", Spellbook: "7113337f695742559ecdecc8905b132a", Cantrips: "8051f445c28e451baf670036be2b6d8c", isCallOfTheWild: true);
             public static SpellList Sorcerer = new SpellList("Sorcerer", Spellbook: "ba0401fdeb4062f40a7aa95b6f07fe89", Cantrips: "c58b36ec3f759c84089c67611d1bcc21")
                 .AddArchetype(new SpellList("Empyreal", Cantrips: "6acb21fbc1bb76c4c9d65ba94c9f15ac"))
                 .AddArchetype(new SpellList("Sage", Spellbook: "ba0401fdeb4062f40a7aa95b6f07fe89", Cantrips: "50d700ea98467834c9fc622efa03d598"));
+            public static SpellList Summoner = new SpellList("Summoner", Spellbook: "972048af37924e59b174653974b255a5", Cantrips: "98914f0079234c06b9a3c5064e06665b", isCallOfTheWild: true);
             public static SpellList Warpriest = new SpellList("Warpriest", Spellbook: "9ef48172d50446aca4c80f321402f743", Cantrips: "a5387ec4685944e1bc829acb84ca96a9", isCallOfTheWild: true);
-            public static SpellList Witch = new SpellList("Witch", Spellbook: "422490cf62744e16a3e131efd94cf290", Cantrips: "86501dda312a4f548d579632c4a06c0f", isCallOfTheWild: true);
+            public static SpellList Witch = new SpellList("Witch", Spellbook: "422490cf62744e16a3e131efd94cf290", Cantrips: "86501dda312a4f548d579632c4a06c0f", isCallOfTheWild: true)
+                .AddArchetype(new SpellList("Winter Witch", Spellbook: "90a9bcf466f740639902446dfd2230e5", Cantrips: "16703303bd8e463ab2d54857097ef613", isCallOfTheWild: true));
             public static SpellList Wizard = new SpellList("Wizard", Spellbook: "ba0401fdeb4062f40a7aa95b6f07fe89", Cantrips: "44d19b62d00179e4bad7afae7684f2e2")
                 .AddArchetype(new SpellList("Abjuration Wizard", Spellbook: "c7a55e475659a944f9229d89c4dc3a8e", OnlySchools: new SpellSchool[] { SpellSchool.Abjuration }))
                 .AddArchetype(new SpellList("Conjuration Wizard", Spellbook: "69a6eba12bc77ea4191f573d63c9df12", OnlySchools: new SpellSchool[] { SpellSchool.Conjuration }))
@@ -162,29 +165,30 @@ namespace ScalingCantripsKM.Utilities
 
             public BlueprintSpellList GetSpellList()
             {
-                if (spellListAssetId == null || spellListAssetId.Length == 0) return null;
                 if (isCallOfTheWild && !Main.isCallOfTheWildEnabled) return null;
+                if (spellListAssetId == null || spellListAssetId.Length == 0) return null;
                 return Blueprints.GetBlueprint<BlueprintSpellList>(spellListAssetId);
             }
 
             public BlueprintFeature GetCantripFeature()
             {
-                if (cantripFeatureAssetId == null || cantripFeatureAssetId.Length == 0) return null;
                 if (isCallOfTheWild && !Main.isCallOfTheWildEnabled) return null;
+                if (cantripFeatureAssetId == null || cantripFeatureAssetId.Length == 0) return null;
                 return Blueprints.GetBlueprint<BlueprintFeature>(cantripFeatureAssetId);
             }
 
             public BlueprintFeatureReplaceSpellbook GetReplacedSpellBook()
             {
-                if (replacedSpellbookAssetId == null || replacedSpellbookAssetId.Length == 0) return null;
                 if (isCallOfTheWild && !Main.isCallOfTheWildEnabled) return null;
+                if (replacedSpellbookAssetId == null || replacedSpellbookAssetId.Length == 0) return null;
                 return Blueprints.GetBlueprint<BlueprintFeatureReplaceSpellbook>(replacedSpellbookAssetId);
             }
 
             public bool AllowsForSpell(BlueprintAbility spell)
             {
+                if (isCallOfTheWild && !Main.isCallOfTheWildEnabled) return false;
                 if (onlySchools != null && !onlySchools.Contains(spell.School)) return false;
-                if (opposedSchools != null && opposedSchools.Contains(spell.School)) { return false; }
+                if (opposedSchools != null && opposedSchools.Contains(spell.School)) return false;
                 return true;
             }
 

@@ -73,7 +73,6 @@ namespace ScalingCantripsKM
                     c.Descriptor = new SpellDescriptorWrapper(SpellDescriptor.Electricity);
                 }));
 
-                // TODO: Check here again for Settings of Jolting Grasp
                 var BaseValueType = ContextRankBaseValueType.CustomProperty;
                 var Progression = (config.StartImmediately) ? ContextRankProgression.OnePlusDivStep : ContextRankProgression.StartPlusDivStep;
                 var Type = AbilityRankType.Default;
