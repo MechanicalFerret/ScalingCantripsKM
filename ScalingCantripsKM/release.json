@@ -2,8 +2,8 @@
     "Releases": [
         {
             "Id": "ScalingCantripsKM",
-            "Version": "1.0.0",
-            "DownloadUrl": "https://github.com/MechanicalFerret/ScalingCantripsKM/releases/download/1.0.0/ScalingCantripsKM-Release.zip"
+            "Version": "1.1.0",
+            "DownloadUrl": "https://github.com/MechanicalFerret/ScalingCantripsKM/releases/download/1.1.0/ScalingCantripsKM-Release.zip"
         }
     ]
 }
