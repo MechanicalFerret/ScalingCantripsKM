@@ -1,6 +1,4 @@
-﻿using Pathfinding.RVO;
-using ScalingCantripsKM.Utilities;
-using System;
+﻿using ScalingCantripsKM.Utilities;
 using UnityEngine;
 
 namespace ScalingCantripsKM.Config
@@ -51,5 +49,5 @@ namespace ScalingCantripsKM.Config
         }
     }
 
-    
+
 }

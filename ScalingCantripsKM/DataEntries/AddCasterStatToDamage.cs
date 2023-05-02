@@ -1,7 +1,5 @@
 ﻿using Kingmaker.Blueprints;
-using Kingmaker.EntitySystem.Entities;
 using Kingmaker.EntitySystem.Stats;
-using Kingmaker.PubSubSystem;
 using Kingmaker.RuleSystem.Rules.Damage;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.Utility;

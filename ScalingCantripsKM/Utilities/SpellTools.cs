@@ -5,7 +5,7 @@ using Kingmaker.Designers.Mechanics.Facts;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.FactLogic;
 using Kingmaker.Utility;
-using ScalingCantripsKM.Config;
+using ScalingCantripsKM.Extensions;
 using System.Collections.Generic;
 using System.Linq;
 

@@ -12,6 +12,7 @@ using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Actions;
 using Kingmaker.UnitLogic.Mechanics.Components;
 using ScalingCantripsKM.Config;
+using ScalingCantripsKM.Extensions;
 using ScalingCantripsKM.Utilities;
 
 namespace ScalingCantripsKM
@@ -50,7 +51,6 @@ namespace ScalingCantripsKM
                 bp.LocalizedSavingThrow = Helpers.CreateString("SKM_FB_ST", "");
                 bp.EffectOnEnemy = AbilityEffectOnUnit.Harmful;
                 bp.Animation = Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell.CastAnimationStyle.Directional;
-                bp.AnimationStyle = Kingmaker.View.Animation.CastAnimationStyle.CastActionDirectional;
                 bp.ActionType = Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Standard;
                 bp.AvailableMetamagic = Metamagic.Empower | Metamagic.Maximize | Metamagic.Quicken | Metamagic.Reach | Metamagic.Heighten;
                 bp.MaterialComponent = new BlueprintAbility.MaterialComponentData();
@@ -133,7 +133,7 @@ namespace ScalingCantripsKM
                 SpellTools.AddSpell(Firebolt, SpellTools.SpellList.Sorcerer);
                 SpellTools.AddSpell(Firebolt, SpellTools.SpellList.Summoner);
                 SpellTools.AddSpell(Firebolt, SpellTools.SpellList.Wizard);
-            }            
+            }
         }
 
         static void AddUnholyZap()
@@ -161,7 +161,6 @@ namespace ScalingCantripsKM
                 bp.LocalizedSavingThrow = Helpers.CreateString("SKM_UZ_ST", "Fortitude half");
                 bp.EffectOnEnemy = AbilityEffectOnUnit.Harmful;
                 bp.Animation = Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell.CastAnimationStyle.Directional;
-                bp.AnimationStyle = Kingmaker.View.Animation.CastAnimationStyle.CastActionDirectional;
                 bp.ActionType = Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Standard;
                 bp.AvailableMetamagic = Metamagic.Empower | Metamagic.Maximize | Metamagic.Quicken | Metamagic.Reach | Metamagic.Heighten;
                 bp.MaterialComponent = new BlueprintAbility.MaterialComponentData();
@@ -273,7 +272,6 @@ namespace ScalingCantripsKM
                 bp.LocalizedSavingThrow = Helpers.CreateString("SKM_DZ_ST", "Fortitude half");
                 bp.EffectOnEnemy = AbilityEffectOnUnit.Harmful;
                 bp.Animation = Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell.CastAnimationStyle.Directional;
-                bp.AnimationStyle = Kingmaker.View.Animation.CastAnimationStyle.CastActionDirectional;
                 bp.ActionType = Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Standard;
                 bp.AvailableMetamagic = Metamagic.Empower | Metamagic.Maximize | Metamagic.Quicken | Metamagic.Reach | Metamagic.Heighten;
                 bp.MaterialComponent = new BlueprintAbility.MaterialComponentData();

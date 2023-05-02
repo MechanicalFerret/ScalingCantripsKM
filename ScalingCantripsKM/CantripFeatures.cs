@@ -2,8 +2,8 @@
 using Kingmaker.Blueprints.Classes.Prerequisites;
 using Kingmaker.Blueprints.Classes.Selection;
 using Kingmaker.Designers.Mechanics.Recommendations;
-using ScalingCantripsKM.Config;
 using ScalingCantripsKM.DataEntries;
+using ScalingCantripsKM.Extensions;
 using ScalingCantripsKM.Utilities;
 
 namespace ScalingCantripsKM
@@ -22,28 +22,34 @@ namespace ScalingCantripsKM
         {
             // Intelligence
             var AddIntToCantripDamage = Blueprints.GetModBlueprint<BlueprintFeature>("SKMAddIntStatToDamage");
-            AddIntToCantripDamage.AddComponent(Helpers.Create<PrerequisiteNoFeature>(c => {
+            AddIntToCantripDamage.AddComponent(Helpers.Create<PrerequisiteNoFeature>(c =>
+            {
                 c.Feature = Blueprints.GetModBlueprint<BlueprintFeature>("SKMAddWisStatToDamage");
             }));
-            AddIntToCantripDamage.AddComponent(Helpers.Create<PrerequisiteNoFeature>(c => {
+            AddIntToCantripDamage.AddComponent(Helpers.Create<PrerequisiteNoFeature>(c =>
+            {
                 c.Feature = Blueprints.GetModBlueprint<BlueprintFeature>("SKMAddChaStatToDamage");
             }));
 
             // Wisdom
             var AddWisToCantripDamage = Blueprints.GetModBlueprint<BlueprintFeature>("SKMAddWisStatToDamage");
-            AddWisToCantripDamage.AddComponent(Helpers.Create<PrerequisiteNoFeature>(c => {
+            AddWisToCantripDamage.AddComponent(Helpers.Create<PrerequisiteNoFeature>(c =>
+            {
                 c.Feature = Blueprints.GetModBlueprint<BlueprintFeature>("SKMAddIntStatToDamage");
             }));
-            AddWisToCantripDamage.AddComponent(Helpers.Create<PrerequisiteNoFeature>(c => {
+            AddWisToCantripDamage.AddComponent(Helpers.Create<PrerequisiteNoFeature>(c =>
+            {
                 c.Feature = Blueprints.GetModBlueprint<BlueprintFeature>("SKMAddChaStatToDamage");
             }));
 
             // Dump Stat. I mean Charisma
             var AddChaToCantripDamage = Blueprints.GetModBlueprint<BlueprintFeature>("SKMAddChaStatToDamage");
-            AddChaToCantripDamage.AddComponent(Helpers.Create<PrerequisiteNoFeature>(c => {
+            AddChaToCantripDamage.AddComponent(Helpers.Create<PrerequisiteNoFeature>(c =>
+            {
                 c.Feature = Blueprints.GetModBlueprint<BlueprintFeature>("SKMAddWisStatToDamage");
             }));
-            AddChaToCantripDamage.AddComponent(Helpers.Create<PrerequisiteNoFeature>(c => {
+            AddChaToCantripDamage.AddComponent(Helpers.Create<PrerequisiteNoFeature>(c =>
+            {
                 c.Feature = Blueprints.GetModBlueprint<BlueprintFeature>("SKMAddIntStatToDamage");
             }));
         }

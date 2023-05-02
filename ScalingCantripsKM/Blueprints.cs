@@ -2,6 +2,7 @@
 using Kingmaker.Blueprints;
 using Kingmaker.Utility;
 using Newtonsoft.Json;
+using ScalingCantripsKM.Extensions;
 using ScalingCantripsKM.Utilities;
 using System;
 using System.Collections.Generic;

@@ -4,7 +4,6 @@ using ScalingCantripsKM.Config;
 using ScalingCantripsKM.Utilities;
 using System;
 using System.Reflection;
-using UnityEngine;
 using UnityModManagerNet;
 
 namespace ScalingCantripsKM

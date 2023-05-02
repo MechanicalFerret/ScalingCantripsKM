@@ -1,13 +1,4 @@
-﻿using Harmony12;
-using Pathfinding.RVO;
-using ScalingCantripsKM.Config;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-using UnityModManagerNet;
+﻿using UnityEngine;
 
 namespace ScalingCantripsKM.Utilities
 {
@@ -19,13 +10,13 @@ namespace ScalingCantripsKM.Utilities
         {
             GUILayout.BeginHorizontal();
             var content = tooltip == null ?
-                new GUIContent(text) : 
+                new GUIContent(text) :
                 new GUIContent(text, tooltip);
             GUILayout.Label(content, BoldLabel);
             GUILayout.EndHorizontal();
         }
 
-        public static void Label(string text, string tooltip = null, bool showWhen = true, float indent= 10f)
+        public static void Label(string text, string tooltip = null, bool showWhen = true, float indent = 10f)
         {
             if (!showWhen) return;
             GUILayout.BeginHorizontal();
@@ -44,12 +35,13 @@ namespace ScalingCantripsKM.Utilities
             GUILayout.EndHorizontal();
         }
 
-        public static void ChooseInt(ref int value, string text, string tooltip = null, int min=1, int max=20, bool showWhen = true, float indent=10f) {
+        public static void ChooseInt(ref int value, string text, string tooltip = null, int min = 1, int max = 20, bool showWhen = true, float indent = 10f)
+        {
             if (!showWhen) return;
             GUILayout.BeginHorizontal();
             GUILayout.Space(indent);
             GUILayout.Label((tooltip == null) ? new GUIContent(text) : new GUIContent(text, tooltip), GUILayout.Width(columnWidth - indent));
-            var result = (int) GUILayout.HorizontalSlider(value, min, max, GUILayout.ExpandWidth(true), GUILayout.MaxWidth(220));
+            var result = (int)GUILayout.HorizontalSlider(value, min, max, GUILayout.ExpandWidth(true), GUILayout.MaxWidth(220));
             GUILayout.Label(result.ToString());
             GUILayout.EndHorizontal();
 

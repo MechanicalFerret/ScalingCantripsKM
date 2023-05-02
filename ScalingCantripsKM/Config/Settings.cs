@@ -46,8 +46,8 @@ namespace ScalingCantripsKM.Config
             RayOfFrost.Save();
             Jolt.Save();
             DisruptUndead.Save();
-            Virtue.Save(); 
-            Firebolt.Save(); 
+            Virtue.Save();
+            Firebolt.Save();
             UnholyZap.Save();
             DivineZap.Save();
             JoltingGrasp.Save();
@@ -56,6 +56,6 @@ namespace ScalingCantripsKM.Config
         public override void Save(UnityModManager.ModEntry modEntry)
         {
             UnityModManager.ModSettings.Save<Settings>(this, modEntry);
-        }        
+        }
     }
 }

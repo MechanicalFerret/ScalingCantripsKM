@@ -1,14 +1,7 @@
-﻿using Kingmaker.Utility;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using ScalingCantripsKM.Utilities;
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityModManagerNet;
-using static ScalingCantripsKM.Blueprints;
 
 namespace ScalingCantripsKM.Config
 {

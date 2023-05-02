@@ -1,5 +1,4 @@
 ﻿using Harmony12;
-using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.Blueprints.Items.Weapons;
 using Kingmaker.EntitySystem.Stats;
@@ -13,6 +12,7 @@ using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.UnitLogic.Mechanics.Actions;
 using Kingmaker.UnitLogic.Mechanics.Components;
 using ScalingCantripsKM.Config;
+using ScalingCantripsKM.Extensions;
 using ScalingCantripsKM.Utilities;
 
 namespace ScalingCantripsKM
@@ -40,7 +40,7 @@ namespace ScalingCantripsKM
                 bp.SetName("Jolting Grasp");
                 bp.SetDescription("Your successful melee {g|Encyclopedia:TouchAttack}touch attack{/g} deals {g|Encyclopedia:Dice}1d3{/g} points of {g|Encyclopedia:Energy_Damage}electricity damage{/g} per "
                     + config.CasterLevelsReq + " {g|Encyclopedia:Caster_Level}caster level(s){/g} (maximum " + config.MaxDice + "d3)");
-                    //" When delivering the jolt, you gain a +3 {g|Encyclopedia:Bonus}bonus{/g} on {g|Encyclopedia:Attack}attack rolls{/g} if the opponent is wearing metal armor (or is carrying a metal weapon or is made of metal).");
+                //" When delivering the jolt, you gain a +3 {g|Encyclopedia:Bonus}bonus{/g} on {g|Encyclopedia:Attack}attack rolls{/g} if the opponent is wearing metal armor (or is carrying a metal weapon or is made of metal).");
                 bp.SpellResistance = true;
                 bp.CanTargetEnemies = true;
                 bp.CanTargetSelf = false;
@@ -48,7 +48,6 @@ namespace ScalingCantripsKM
                 bp.LocalizedSavingThrow = ShockingGrasp.LocalizedSavingThrow;
                 bp.EffectOnEnemy = AbilityEffectOnUnit.Harmful;
                 bp.Animation = Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell.CastAnimationStyle.Touch;
-                bp.AnimationStyle = Kingmaker.View.Animation.CastAnimationStyle.CastActionTouch;
                 bp.ActionType = Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Standard;
                 bp.AvailableMetamagic = Metamagic.Empower | Metamagic.Maximize | Metamagic.Quicken | Metamagic.Reach | Metamagic.Heighten;
                 bp.MaterialComponent = new BlueprintAbility.MaterialComponentData();
@@ -126,7 +125,7 @@ namespace ScalingCantripsKM
                 bp.SetName("Jolting Grasp");
                 bp.SetDescription("Your successful melee {g|Encyclopedia:TouchAttack}touch attack{/g} deals {g|Encyclopedia:Dice}1d3{/g} points of {g|Encyclopedia:Energy_Damage}electricity damage{/g} per " + config.CasterLevelsReq +
                     " {g|Encyclopedia:Caster_Level}caster level(s){/g} (maximum " + config.MaxDice + "d3)");
-                    //" When delivering the jolt, you gain a +3 {g|Encyclopedia:Bonus}bonus{/g} on {g|Encyclopedia:Attack}attack rolls{/g} if the opponent is wearing metal armor (or is carrying a metal weapon or is made of metal).");
+                //" When delivering the jolt, you gain a +3 {g|Encyclopedia:Bonus}bonus{/g} on {g|Encyclopedia:Attack}attack rolls{/g} if the opponent is wearing metal armor (or is carrying a metal weapon or is made of metal).");
                 bp.SpellResistance = true;
                 bp.CanTargetEnemies = true;
                 bp.CanTargetSelf = false;
@@ -136,7 +135,6 @@ namespace ScalingCantripsKM
                 bp.Type = AbilityType.Spell;
                 bp.EffectOnEnemy = AbilityEffectOnUnit.Harmful;
                 bp.Animation = Kingmaker.Visual.Animation.Kingmaker.Actions.UnitAnimationActionCastSpell.CastAnimationStyle.Touch;
-                bp.AnimationStyle = Kingmaker.View.Animation.CastAnimationStyle.CastActionTouch;
                 bp.ActionType = Kingmaker.UnitLogic.Commands.Base.UnitCommand.CommandType.Standard;
                 bp.AvailableMetamagic = Metamagic.Quicken | Metamagic.Reach | Metamagic.Heighten;
                 bp.MaterialComponent = new BlueprintAbility.MaterialComponentData();

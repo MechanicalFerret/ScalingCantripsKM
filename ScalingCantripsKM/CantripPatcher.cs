@@ -11,6 +11,7 @@ using Kingmaker.UnitLogic.Mechanics.Components;
 using Kingmaker.UnitLogic.Mechanics.Properties;
 using ScalingCantripsKM.Config;
 using ScalingCantripsKM.DataEntries;
+using ScalingCantripsKM.Extensions;
 using ScalingCantripsKM.Utilities;
 using System.Linq;
 using static Kingmaker.RuleSystem.DiceType;
